@@ -252,3 +252,59 @@
 		jQuery(".preloader").fadeOut(500);
 	});
 })(jQuery);
+
+/* assets/js/cmp-tabs.js */
+(() => {
+  function activate(root, id) {
+    const tabs = root.querySelectorAll('.cmp-tab');
+    const panels = root.querySelectorAll('.prices-content-area');
+
+    panels.forEach(p => {
+      const on = '#'+p.id === id;
+      p.toggleAttribute('hidden', !on);
+      p.classList.toggle('active', on);
+    });
+
+    tabs.forEach(a => {
+      const on = a.getAttribute('href') === id;
+      a.classList.toggle('is-active', on);
+      a.parentElement.classList.toggle('active', on);
+      a.setAttribute('aria-selected', on ? 'true' : 'false');
+      a.setAttribute('tabindex', on ? '0' : '-1');
+    });
+  }
+
+  function init() {
+    const root = document.querySelector('.cmp-modern') || document;
+    if (!root) return;
+    const tabs = root.querySelectorAll('.cmp-tab');
+    const current = root.querySelector('.cmp-tab.is-active') || tabs[0];
+    if (!current) return;
+
+    activate(root, current.getAttribute('href'));
+
+    tabs.forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        activate(root, a.getAttribute('href'));
+      });
+      a.addEventListener('keydown', e => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          activate(root, a.getAttribute('href'));
+        }
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+
+(() => {
+  const el = document.getElementById('footerYear');
+  if (el) el.textContent = new Date().getFullYear();
+})();

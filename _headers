@@ -3,5 +3,4 @@
   Referrer-Policy: strict-origin-when-cross-origin
   Permissions-Policy: geolocation=(), microphone=(), camera=()
   Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
-  # No X-Frame-Options here
-  Content-Security-Policy: default-src 'self'; style-src 'self'; script-src 'self'; img-src 'self' data:; frame-src 'self' https://www.aparat.com https://aparat.com https://www.cdn.aparat.com; base-uri 'none'; form-action 'self'; frame-ancestors 'self' https://www.zhaket.com https://zhaket.com https://*.zhaket.com;
+  Content-Security-Policy: default-src 'self'; style-src 'self'; style-src-attr 'unsafe-inline'; script-src 'self'; img-src 'self' data:; frame-src 'self' https://www.aparat.com https://aparat.com https://www.cdn.aparat.com; base-uri 'none'; form-action 'self'; frame-ancestors 'self' https://www.zhaket.com https://zhaket.com https://*.zhaket.com;
